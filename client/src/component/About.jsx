@@ -37,6 +37,9 @@ export default function About() {
                     A little about my journey, my approach, and what keeps me curious.
                 </p>
             </section>
+
+            {/* Story section */}
+            <Storys />
         </main>
     );
 }

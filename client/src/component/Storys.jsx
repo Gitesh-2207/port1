@@ -1,87 +1,107 @@
-
 import React from "react";
 
 export default function Storys() {
     return (
         <section
             id="about-story"
-            className="relative overflow-hidden bg-[#f8f6f0] px-6 py-16 text-[#201d1c] sm:px-10 sm:py-20 lg:px-[3.5%] lg:py-24"
+            className="relative mt-16 sm:mt-20 lg:mt-24"
         >
-            <div className="mx-auto grid max-w-[1800px] grid-cols-1 gap-12 lg:grid-cols-[0.85fr_1.25fr] lg:gap-20">
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.85fr_1.25fr] lg:gap-16 xl:gap-20">
 
-                {/* LEFT: PROFILE PHOTO */}
+                {/* LEFT: PROFILE PHOTO WITH TAPE & CAPTION */}
                 <div className="min-w-0">
-                    <div className="relative mx-auto max-w-[660px] lg:mx-0">
+                    <div className="relative mx-auto max-w-[560px] lg:mx-0">
 
-                        <div className="absolute -top-5 left-[35%] z-10 h-10 w-28 rotate-2 bg-[#d8cda9]/70 sm:w-36" />
+                        {/* Top Washi Tape */}
+                        <div
+                            className="absolute -top-4 left-[36%] z-20 h-9 w-32 rotate-1 bg-[#d8cca5]/80 shadow-sm backdrop-blur-[0.5px] border-t border-b border-black/5 sm:w-36"
+                            aria-hidden="true"
+                        />
 
-                        <div className="relative overflow-hidden border border-black/5 bg-[#e8e1d3] shadow-sm">
-                            <img
-                                src="/images/profile.jpg"
-                                alt="Gitesh Patidar"
-                                className="h-[440px] w-full object-cover object-center sm:h-[600px] lg:h-[680px]"
-                            />
+                        {/* Tilted Photo Print Card */}
+                        <div className="relative -rotate-1 transition-transform duration-300 hover:rotate-0">
+                            <div className="overflow-hidden border border-black/10 bg-white p-2.5 shadow-[0_14px_34px_rgba(32,29,28,0.12)] sm:p-3 sm:shadow-[0_20px_45px_rgba(32,29,28,0.15)]">
+                                <div className="relative overflow-hidden bg-[#e8e1d3]">
+                                    {/* Dummy portrait image link - user can replace with their own photo URL or local asset */}
+                                    <img
+                                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=80"
+                                        alt="Profile portrait"
+                                        className="h-[460px] w-full object-cover object-center sm:h-[580px] lg:h-[660px]"
+                                    />
 
-                            <div className="absolute bottom-5 right-5 text-right font-mono text-xs font-bold leading-7 text-white drop-shadow-md">
-                                STRATEGIST
-                                <br />
-                                LISTENER
-                                <br />
-                                MAKER
+                                    {/* Overlay text in bottom-right corner */}
+                                    <div className="absolute bottom-5 right-5 text-right font-mono text-xs font-bold leading-6 tracking-[0.18em] text-white drop-shadow-[0_2px_5px_rgba(0,0,0,0.85)] sm:text-sm">
+                                        STRATEGIST
+                                        <br />
+                                        LISTENER
+                                        <br />
+                                        MAKER
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <p className="mt-7 max-w-[590px] font-handwritten text-2xl leading-relaxed text-[#1769c9] sm:text-[28px]">
-                        Usually switching between code, a notebook full of ideas, and way
+                    {/* Handwritten caption below photo */}
+                    <p className="mt-6 max-w-[540px] font-handwritten text-2xl leading-snug text-[#1769c9] sm:text-[28px]">
+                        Usually switching between Figma, a notebook full of ideas, and way
                         too many browser tabs.
                     </p>
                 </div>
 
-                {/* RIGHT: STORY */}
-                <div className="min-w-0">
-                    <h2 className="max-w-[1000px] font-serif text-[clamp(2.2rem,4vw,4.3rem)] leading-[1.13] tracking-[-0.035em]">
-                        Good design should feel comfortable to look at and effortless to
-                        use, guiding people naturally without making them think twice.
-                    </h2>
+                {/* RIGHT: STORY CONTENT */}
+                <div className="min-w-0 flex flex-col justify-between">
+                    <div>
+                        {/* Big Serif Heading */}
+                        <h2 className="max-w-[980px] font-serif text-[clamp(2.1rem,3.7vw,3.85rem)] font-normal leading-[1.18] tracking-tight text-[#201d1c]">
+                            Good design should feel comfortable to look at and effortless to
+                            use, guiding people naturally without making them think twice.
+                        </h2>
 
-                    <div className="mt-12 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:mt-20 lg:gap-x-12">
-                        <p className="font-serif text-lg leading-[1.8] sm:text-xl">
-                            My journey into technology began with curiosity and creativity.
-                            From learning programming fundamentals in college to building
-                            full-stack applications, I've always enjoyed turning ideas into
-                            useful digital experiences.
-                        </p>
+                        {/* 2-Column Paragraphs */}
+                        <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-7 sm:grid-cols-2 lg:mt-14 lg:gap-x-12">
+                            <div className="space-y-6">
+                                <p className="font-serif text-[17px] leading-[1.78] text-[#2b2725] sm:text-[18px]">
+                                    My journey into design didn't begin with software—it began
+                                    with a pencil. From sketching portraits and tattoo concepts to
+                                    leading design on stage and event campaigns in college, I've
+                                    always been drawn to creating things that communicate visually.
+                                </p>
 
-                        <p className="font-serif text-lg leading-[1.8] sm:text-xl">
-                            My background in frontend development taught me that a good
-                            product needs more than attractive screens. It needs clean code,
-                            thoughtful design, responsive layouts, and a smooth user
-                            experience.
-                        </p>
+                                <p className="font-serif text-[17px] leading-[1.78] text-[#2b2725] sm:text-[18px]">
+                                    Today, I design digital products across web and mobile,
+                                    combining UX thinking, visual design, and a practical
+                                    understanding of how products are built.
+                                </p>
+                            </div>
 
-                        <p className="font-serif text-lg leading-[1.8] sm:text-xl">
-                            Today, I build web applications using React, Node.js, Express,
-                            and MongoDB, focusing on practical solutions, reusable
-                            components, and maintainable code.
-                        </p>
+                            <div className="space-y-6">
+                                <p className="font-serif text-[17px] leading-[1.78] text-[#2b2725] sm:text-[18px]">
+                                    A background in frontend development taught me that good
+                                    design doesn't end in Figma. Understanding implementation
+                                    helps me collaborate better with developers, make smarter
+                                    design decisions, and create experiences that are both
+                                    beautiful and buildable.
+                                </p>
 
-                        <p className="font-serif text-lg leading-[1.8] sm:text-xl">
-                            I'm also exploring AI tools and modern development workflows to
-                            improve productivity, experiment with ideas, and build better
-                            digital products.
-                        </p>
+                                <p className="font-serif text-[17px] leading-[1.78] text-[#2b2725] sm:text-[18px]">
+                                    Lately, I've been exploring AI as a creative partner—not to
+                                    replace design thinking, but to speed up research, prototyping,
+                                    and iteration.
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
-                    {/* BOTTOM QUOTE */}
-                    <div className="mt-14 border-l-4 border-[#1769c9] bg-[#e1f1f4] px-6 py-7 sm:px-10 sm:py-9 lg:mt-24">
-                        <p className="font-handwritten text-3xl italic text-[#201d1c]">
+                    {/* Bottom Blue Highlight / Quote Box */}
+                    <div className="mt-12 border-l-[3.5px] border-[#1769c9] bg-[#e1f1f4] px-6 py-6 sm:px-8 sm:py-7 lg:mt-16">
+                        <p className="font-handwritten text-2xl font-semibold italic text-[#201d1c] sm:text-3xl">
                             Honestly?
                         </p>
 
-                        <p className="mt-2 font-handwritten text-2xl leading-relaxed text-[#1769c9] sm:text-3xl">
-                            Still the same curious person who loves building things—just
-                            using code and pixels instead of pencils.
+                        <p className="mt-1 font-handwritten text-xl leading-relaxed text-[#1769c9] sm:text-2xl">
+                            Still the same kid who loved drawing—just that using pixels instead
+                            of pencils now.
                         </p>
                     </div>
                 </div>

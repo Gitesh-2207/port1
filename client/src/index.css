@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.font-handwritten {
+  font-family: 'Caveat', cursive, sans-serif;
+}
+
 :root {
   font-family: Georgia, 'Times New Roman', serif;
   color: #201d1c;
