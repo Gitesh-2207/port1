@@ -7,7 +7,7 @@ const stats = [
     },
     {
         number: "10+",
-        label: "WEBSITE DESIGNED",
+        label: "WEBSITE HOSTED",
         caption: "still asking “why?”",
     },
     {
