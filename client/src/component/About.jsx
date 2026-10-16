@@ -1,6 +1,8 @@
 
 import React from "react";
 import Storys from "../component/Storys";
+import Story2 from "../component/Story2";
+import Story4 from "../component/Story4";
 export default function About() {
     return (
         <main
@@ -40,6 +42,8 @@ export default function About() {
 
             {/* Story section */}
             <Storys />
+            <Story2 />
+            <Story4 />
         </main>
     );
 }

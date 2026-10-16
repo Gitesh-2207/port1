@@ -1862,3 +1862,510 @@ a {
     transition: none;
   }
 }
+
+.story2-section {
+  background: #1c1917;
+  color: #fff;
+  padding: 76px 4%;
+  overflow: hidden;
+}
+
+.story2-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 72px;
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.story2-line {
+  width: 195px;
+  height: 2px;
+  background: #f5f1e9;
+}
+
+.story2-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid #514c47;
+}
+
+.story2-card {
+  min-height: 350px;
+  padding: 65px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition:
+    transform 0.4s ease,
+    background-color 0.4s ease,
+    box-shadow 0.4s ease;
+  animation: story2-enter 0.7s ease both;
+  animation-delay: var(--delay);
+}
+
+.story2-card:nth-child(odd) {
+  border-right: 1px solid #514c47;
+}
+
+.story2-card:nth-child(-n + 2) {
+  border-bottom: 1px solid #514c47;
+}
+
+.story2-dark {
+  background: #1c1917;
+  color: #fff;
+}
+
+.story2-yellow {
+  background: #fff176;
+  color: #1c1917;
+}
+
+.story2-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.18);
+}
+
+.story2-number {
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.story2-content {
+  margin-top: 45px;
+}
+
+.story2-content h2 {
+  max-width: 600px;
+  margin: 0 0 28px;
+  font-family: inherit;
+  font-size: clamp(25px, 2.5vw, 44px);
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: -1.2px;
+}
+
+.story2-content p {
+  max-width: 680px;
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: clamp(17px, 1.35vw, 25px);
+  line-height: 1.65;
+}
+
+@keyframes story2-enter {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .story2-section {
+    padding: 48px 5%;
+  }
+
+  .story2-eyebrow {
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 38px;
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  .story2-line {
+    width: 45px;
+  }
+
+  .story2-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .story2-card {
+    min-height: 280px;
+    padding: 35px 28px;
+  }
+
+  .story2-card:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .story2-card:not(:last-child) {
+    border-bottom: 1px solid #514c47;
+  }
+
+  .story2-content {
+    margin-top: 40px;
+  }
+
+  .story2-content h2 {
+    font-size: 29px;
+    line-height: 1.25;
+  }
+
+  .story2-content p {
+    font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story2-card {
+    animation: none;
+    transition: none;
+  }
+}
+
+.story4-section {
+  min-height: 680px;
+  padding: 70px 4.2%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7%;
+  align-items: start;
+  overflow: hidden;
+  color: #201c19;
+  background-color: #f8f6f0;
+  background-image:
+    linear-gradient(rgba(65, 133, 184, 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(65, 133, 184, 0.10) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.story4-left {
+  min-width: 0;
+}
+
+.story4-subtitle {
+  margin: 0 0 22px;
+  color: #176ac5;
+  font-family: "Caveat", cursive;
+  font-size: clamp(28px, 2.5vw, 42px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.story4-left h2 {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(58px, 6vw, 110px);
+  font-weight: 900;
+  letter-spacing: -0.075em;
+  line-height: 0.99;
+}
+
+.story4-right {
+  padding-top: 65px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.story4-skill {
+  animation: story4-appear 0.7s ease both;
+  animation-delay: var(--skill-delay);
+}
+
+.story4-skill-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.story4-emoji {
+  font-size: 15px;
+  transition: transform 0.3s ease;
+}
+
+.story4-skill:hover .story4-emoji {
+  transform: translateY(-5px) rotate(-12deg) scale(1.2);
+}
+
+.story4-track {
+  height: 6px;
+  width: 100%;
+  background: #d8d5cc;
+}
+
+.story4-progress {
+  position: relative;
+  height: 100%;
+  width: var(--progress);
+  background: #176ac5;
+  animation: story4-grow 1.2s ease both;
+  transform-origin: left;
+}
+
+.story4-dot {
+  position: absolute;
+  top: 50%;
+  right: -13px;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #ff6829;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+.story4-skill:hover .story4-dot {
+  transform: translateY(-50%) scale(1.2);
+}
+
+@keyframes story4-grow {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: var(--progress);
+  }
+}
+
+@keyframes story4-appear {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .story4-section {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 45px;
+    padding: 55px 6%;
+  }
+
+  .story4-left h2 {
+    font-size: clamp(58px, 12vw, 85px);
+  }
+
+  .story4-right {
+    padding-top: 0;
+    gap: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .story4-skill,
+  .story4-progress {
+    animation: none;
+  }
+
+  .story4-emoji,
+  .story4-dot {
+    transition: none;
+  }
+}
+
+.resume-hero {
+  min-height: 680px;
+  padding: 38px 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: #201c19;
+  background-color: #f8f6f0;
+  background-image:
+    linear-gradient(rgba(65, 133, 184, 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(65, 133, 184, 0.10) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.resume-badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 15px;
+  padding: 13px 24px;
+  border: 1px solid #d7d3cc;
+  border-radius: 50px;
+  background: rgba(230, 227, 220, 0.55);
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.resume-badge-circle {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #201c19;
+  color: #fff;
+  font-weight: 700;
+}
+
+.resume-heading {
+  margin: 62px 0 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(60px, 8.6vw, 160px);
+  font-weight: 900;
+  letter-spacing: -0.075em;
+  line-height: 0.96;
+}
+
+.resume-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  margin-top: 55px;
+}
+
+.resume-bottom p {
+  max-width: 900px;
+  margin: 0;
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(20px, 1.8vw, 30px);
+  line-height: 1.6;
+}
+
+.resume-look-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border: 0;
+  background: transparent;
+  color: #176ac5;
+  font-family: "Caveat", cursive;
+  font-size: 28px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.3s ease;
+}
+
+.resume-look-button:hover {
+  transform: translateY(5px);
+}
+
+.resume-details {
+  padding: 75px 4%;
+  background: #1c1917;
+  color: #fff;
+}
+
+.resume-details-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 45px;
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+}
+
+.resume-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid #514c47;
+}
+
+.resume-detail-card {
+  min-height: 300px;
+  padding: 40px;
+  border-bottom: 1px solid #514c47;
+}
+
+.resume-detail-card:nth-child(odd) {
+  border-right: 1px solid #514c47;
+}
+
+.resume-detail-card:nth-child(n + 3) {
+  border-bottom: 0;
+}
+
+.resume-detail-card>span {
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.resume-detail-card h2 {
+  margin: 50px 0 18px;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(27px, 3vw, 42px);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.resume-detail-card p {
+  font-family: "DM Serif Display", serif;
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+.resume-detail-yellow {
+  background: #fff176;
+  color: #201c19;
+}
+
+@media (max-width: 768px) {
+  .resume-hero {
+    min-height: auto;
+    padding: 30px 6% 55px;
+  }
+
+  .resume-badge {
+    gap: 10px;
+    padding: 8px 13px;
+    font-size: 10px;
+  }
+
+  .resume-heading {
+    margin-top: 65px;
+    font-size: clamp(48px, 11vw, 80px);
+    letter-spacing: -0.065em;
+  }
+
+  .resume-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 35px;
+  }
+
+  .resume-details {
+    padding: 50px 5%;
+  }
+
+  .resume-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-detail-card,
+  .resume-detail-card:nth-child(odd) {
+    border-right: 0;
+    border-bottom: 1px solid #514c47;
+    padding: 30px 24px;
+  }
+
+  .resume-detail-card:last-child {
+    border-bottom: 0;
+  }
+
+  .resume-detail-card h2 {
+    margin-top: 35px;
+  }
+}
