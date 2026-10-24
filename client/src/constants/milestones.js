@@ -1,0 +1,42 @@
+export const MILESTONES = [
+  {
+    date: "2019 — 2020",
+    title: "In School",
+    handwritten: "Curious about technology, solving math problems, and writing my first programs.",
+    isYellow: true,
+    rotation: "-1.5deg",
+    delay: "delay-100",
+  },
+  {
+    date: "2020 — 2022",
+    title: "Foundations",
+    handwritten: "Higher secondary in science & math. Explored C++, algorithmic logic, and web basics.",
+    isYellow: false,
+    rotation: "2deg",
+    delay: "delay-200",
+  },
+  {
+    date: "2022 — 2026",
+    title: "In College",
+    handwritten: "B.Tech in CSE at SDBCT, Indore. Data structures, DBMS, networks, and software engineering.",
+    isYellow: true,
+    rotation: "-1deg",
+    delay: "delay-300",
+  },
+  {
+    date: "2024 — 2025",
+    title: "Full-Stack Dev",
+    handwritten: "Mastered the MERN stack—building responsive React apps, Express APIs, and MongoDB databases.",
+    isYellow: false,
+    rotation: "1.5deg",
+    delay: "delay-400",
+  },
+  {
+    date: "Now",
+    title: "Engineer",
+    handwritten: "Designing digital products that solve real problems, focusing on performance, UX, and clean code.",
+    isYellow: true,
+    rotation: "-2deg",
+    delay: "delay-500",
+  },
+];

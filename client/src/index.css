@@ -1,47 +1,120 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700;800;900&family=Caveat:wght@500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.font-handwritten {
-  font-family: 'Caveat', cursive, sans-serif;
-}
-
 :root {
-  font-family: Georgia, 'Times New Roman', serif;
-  color: #201d1c;
-  background: #f7f5ef;
-  font-synthesis: none;
-}
-
-* {
-  box-sizing: border-box;
+  --bg: #f8f6f1;
+  --surface: #fff;
+  --ink: #1c1917;
+  --muted: #6e6861;
+  --line: #d9d4ca;
+  --highlight: #fff176;
+  --sticky: #fff6a8;
+  --sticky-2: #b3e5fc;
+  --sticky-3: #f8bbd0;
+  --sticky-4: #c8e6c9;
+  --pen: #1565c0;
+  --red: #c62828;
+  --accent: #ff6b2b;
+  --grid-line: rgba(21, 101, 192, 0.055);
+  --display: "Archivo Black", Impact, sans-serif;
+  --body: "Lora", Georgia, serif;
+  --hand: "Caveat", cursive;
+  --mono: "IBM Plex Mono", monospace;
+  --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --shadow: 0 18px 50px rgba(28, 25, 23, 0.09);
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
-  min-width: 320px;
+  color: var(--ink);
+  background: linear-gradient(180deg, #fbf8f2 0%, #f8f6f1 48%, #f5efe7 100%);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
+body::selection {
+  background: var(--highlight);
+  color: var(--ink);
 }
 
-.paper-grid {
-  background-color: #f7f5ef;
-  background-image: linear-gradient(rgba(67, 133, 181, .095) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(67, 133, 181, .095) 1px, transparent 1px);
-  background-size: 40px 40px;
+.noise {
+  position: fixed;
+  z-index: 40;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
 }
 
-.note {
-  box-shadow: 0 24px 35px rgba(31, 27, 24, .12);
+.paper-grid,
+.grid-paper {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.hero-curved-line {
+  stroke-dasharray: 850;
+  stroke-dashoffset: 850;
+  animation: stroke-draw 1.6s cubic-bezier(0.65, 0, 0.35, 1) forwards 0.3s;
+}
+
+@keyframes stroke-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.pin {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ef4444, #991b1b);
+  box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.32);
+  transform: translateX(-50%);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  pointer-events: none;
+}
+
+.tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 85px;
+  height: 28px;
+  background: rgba(246, 237, 210, 0.8);
+  backdrop-filter: blur(2px);
+  border-left: 2px dashed rgba(217, 212, 202, 0.6);
+  border-right: 2px dashed rgba(217, 212, 202, 0.6);
+  box-shadow: 0 2px 4px rgba(28, 25, 23, 0.08);
+  transform: translateX(-50%) rotate(-2deg);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.sticky-curl {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, transparent 50%, rgba(28, 25, 23, 0.08) 50%);
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .marquee-container {
@@ -92,15 +165,21 @@ a {
   }
 }
 
-/* Pause while hovering */
-.marquee-container:hover .marquee-track {
-  animation-play-state: paused;
+/* Continuous uninterrupted animation */
+.marquee-track {
+  animation: marquee-scroll 28s linear infinite;
+  will-change: transform;
 }
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
-    animation: none;
+    animation: none !important;
+    transform: none !important;
+  }
+  .hero-curved-line {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
   }
 }
 
@@ -158,7 +237,7 @@ a {
 .story-right p {
   margin: 0 0 28px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(20px, 1.48vw, 28px);
+  font-size: clamp(15px, 1.35vw, 22px);
   line-height: 1.65;
 }
 
@@ -198,7 +277,7 @@ a {
   }
 
   .story-right p {
-    font-size: clamp(20px, 3vw, 25px);
+    font-size: clamp(15px, 2.5vw, 20px);
   }
 }
 
@@ -217,7 +296,7 @@ a {
   }
 
   .story-right p {
-    font-size: 19px;
+    font-size: 15px;
     line-height: 1.6;
   }
 }
@@ -438,7 +517,7 @@ a {
   display: flex;
   align-items: center;
   gap: 24px;
-  font-family: "DM Mono", monospace;
+  font-family: var(--mono);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.24em;
@@ -462,7 +541,7 @@ a {
 .approach-script {
   margin: 0 0 18px;
   color: #1768c5;
-  font-family: "Caveat", cursive;
+  font-family: var(--hand);
   font-size: clamp(28px, 2.7vw, 44px);
   font-weight: 600;
   line-height: 1.1;
@@ -471,11 +550,11 @@ a {
 
 .approach-heading {
   margin: 0;
-  font-family: "DM Sans", Arial, sans-serif;
-  font-size: clamp(58px, 5.7vw, 108px);
+  font-family: var(--display);
+  font-size: clamp(52px, 5.2vw, 96px);
   font-weight: 900;
-  line-height: 1.02;
-  letter-spacing: -0.075em;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
 }
 
 .approach-copy {
@@ -485,8 +564,8 @@ a {
 
 .approach-copy p {
   margin: 0 0 24px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(20px, 1.5vw, 28px);
+  font-family: var(--body);
+  font-size: clamp(15px, 1.35vw, 22px);
   line-height: 1.65;
 }
 
@@ -564,7 +643,7 @@ a {
   border-radius: 50%;
   background: #211e1d;
   color: white;
-  font-family: "DM Mono", monospace;
+  font-family: var(--mono);
   font-size: 18px;
   font-weight: 700;
   box-shadow: 0 5px 12px #0002;
@@ -590,10 +669,10 @@ a {
 
 .approach-card h3 {
   margin: 0 0 20px;
-  font-family: "DM Sans", Arial, sans-serif;
+  font-family: var(--display);
   font-size: clamp(23px, 1.8vw, 32px);
   font-weight: 900;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.02em;
 }
 
 .approach-card ul {
@@ -604,7 +683,7 @@ a {
   padding: 0;
   list-style: none;
   color: #6d6a69;
-  font-family: "DM Mono", monospace;
+  font-family: var(--mono);
   font-size: clamp(13px, 1.12vw, 19px);
   line-height: 1.45;
   overflow-wrap: anywhere;
@@ -703,7 +782,7 @@ a {
   }
 
   .approach-copy p {
-    font-size: 19px;
+    font-size: 15px;
     line-height: 1.6;
   }
 
@@ -751,7 +830,7 @@ a {
   display: flex;
   align-items: center;
   gap: 24px;
-  font: 500 12px "DM Mono", monospace;
+  font: 500 12px var(--mono);
   letter-spacing: 0.24em;
 }
 
@@ -771,8 +850,8 @@ a {
 
 .works-title-row h1 {
   margin: 0;
-  font: 900 clamp(64px, 6.2vw, 116px) / 0.96 "DM Sans", Arial, sans-serif;
-  letter-spacing: -0.075em;
+  font: 900 clamp(54px, 5.5vw, 102px) / 0.98 var(--display);
+  letter-spacing: -0.04em;
 }
 
 .works-all-button {
@@ -787,7 +866,7 @@ a {
   background: var(--ink);
   color: white;
   box-shadow: 5px 6px 0 #ff642d;
-  font: 700 12px "DM Mono", monospace;
+  font: 700 12px var(--mono);
   text-decoration: none;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -829,7 +908,7 @@ a {
 }
 
 .work-number {
-  font: 500 16px "DM Mono", monospace;
+  font: 500 16px var(--mono);
 }
 
 .work-main {
@@ -843,24 +922,27 @@ a {
   gap: 13px;
   align-items: center;
   margin: 0 0 42px;
-  font: 12px "DM Mono", monospace;
+  font: 12px var(--mono);
 }
 
-.work-main h2 {
+.work-main h2,
+.work-main h3 {
   margin: 0 0 20px;
-  font: 900 clamp(48px, 5.2vw, 90px) / 0.98 "DM Sans", Arial, sans-serif;
-  letter-spacing: -0.07em;
+  font: 900 clamp(42px, 4.8vw, 84px) / 0.98 var(--display);
+  font-weight: 900;
+  letter-spacing: -0.03em;
   transition: transform 0.4s ease;
 }
 
-.work-project:hover .work-main h2 {
+.work-project:hover .work-main h2,
+.work-project:hover .work-main h3 {
   transform: translateY(-5px);
 }
 
 .work-description {
   max-width: 1000px;
   margin: 0;
-  font: 400 clamp(19px, 1.45vw, 27px) / 1.45 Georgia, "Times New Roman", serif;
+  font: 400 clamp(15px, 1.25vw, 22px) / 1.6 var(--body);
 }
 
 .work-aside {
@@ -875,7 +957,7 @@ a {
   padding: 10px 15px;
   border: 3px solid #d72b2b;
   color: #d72b2b;
-  font: 500 13px "DM Mono", monospace;
+  font: 700 13px var(--mono);
   letter-spacing: 0.1em;
   transform: rotate(-5deg);
 }
@@ -883,7 +965,7 @@ a {
 .work-aside>p {
   max-width: 260px;
   margin: 0 0 22px;
-  font: 500 15px/1.8 "DM Mono", monospace;
+  font: 500 14px/1.8 var(--mono);
 }
 
 .work-arrow {
@@ -915,7 +997,7 @@ a {
   min-height: 110px;
   padding: 24px 28px;
   box-shadow: 0 18px 30px #211e1d1b;
-  font: 600 23px/1.4 "Caveat", cursive;
+  font: 600 23px/1.4 var(--hand);
   pointer-events: none;
   transition: transform 0.45s ease,
     box-shadow 0.45s ease;
@@ -962,7 +1044,7 @@ a {
   padding: 28px 4.1%;
   background: var(--ink);
   color: white;
-  font: 11px "DM Mono", monospace;
+  font: 11px var(--mono);
   letter-spacing: 0.1em;
 }
 
@@ -1066,8 +1148,8 @@ a {
   }
 
   .work-description {
-    font-size: 18px;
-    line-height: 1.5;
+    font-size: 15px;
+    line-height: 1.55;
   }
 
   .work-aside {
@@ -1875,7 +1957,7 @@ a {
   align-items: center;
   gap: 24px;
   margin-bottom: 72px;
-  font-family: monospace;
+  font-family: var(--mono);
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 3px;
@@ -1931,7 +2013,7 @@ a {
 }
 
 .story2-number {
-  font-family: monospace;
+  font-family: var(--mono);
   font-size: 14px;
   font-weight: 600;
 }
@@ -1943,18 +2025,18 @@ a {
 .story2-content h2 {
   max-width: 600px;
   margin: 0 0 28px;
-  font-family: inherit;
-  font-size: clamp(25px, 2.5vw, 44px);
-  font-weight: 800;
-  line-height: 1.4;
-  letter-spacing: -1.2px;
+  font-family: var(--display);
+  font-size: clamp(25px, 2.5vw, 40px);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
 }
 
 .story2-content p {
   max-width: 680px;
   margin: 0;
-  font-family: Georgia, serif;
-  font-size: clamp(17px, 1.35vw, 25px);
+  font-family: var(--body);
+  font-size: clamp(15px, 1.25vw, 20px);
   line-height: 1.65;
 }
 
@@ -2014,7 +2096,8 @@ a {
   }
 
   .story2-content p {
-    font-size: 18px;
+    font-size: 15px;
+    line-height: 1.6;
   }
 }
 
@@ -2201,7 +2284,7 @@ a {
   border: 1px solid #d7d3cc;
   border-radius: 50px;
   background: rgba(230, 227, 220, 0.55);
-  font-family: "DM Mono", monospace;
+  font-family: var(--mono);
   font-size: 13px;
   letter-spacing: 1px;
 }
@@ -2219,10 +2302,10 @@ a {
 
 .resume-heading {
   margin: 62px 0 0;
-  font-family: "DM Sans", sans-serif;
-  font-size: clamp(60px, 8.6vw, 160px);
+  font-family: var(--display);
+  font-size: clamp(52px, 8vw, 130px);
   font-weight: 900;
-  letter-spacing: -0.075em;
+  letter-spacing: -0.04em;
   line-height: 0.96;
 }
 
@@ -2237,8 +2320,8 @@ a {
 .resume-bottom p {
   max-width: 900px;
   margin: 0;
-  font-family: "DM Serif Display", serif;
-  font-size: clamp(20px, 1.8vw, 30px);
+  font-family: var(--body);
+  font-size: clamp(19px, 1.6vw, 26px);
   line-height: 1.6;
 }
 
@@ -2250,7 +2333,7 @@ a {
   border: 0;
   background: transparent;
   color: #176ac5;
-  font-family: "Caveat", cursive;
+  font-family: var(--hand);
   font-size: 28px;
   cursor: pointer;
   white-space: nowrap;
@@ -2267,60 +2350,6 @@ a {
   color: #fff;
 }
 
-.resume-details-header {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-bottom: 45px;
-  font-family: "DM Mono", monospace;
-  font-size: 12px;
-  letter-spacing: 1.5px;
-}
-
-.resume-details-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  border: 1px solid #514c47;
-}
-
-.resume-detail-card {
-  min-height: 300px;
-  padding: 40px;
-  border-bottom: 1px solid #514c47;
-}
-
-.resume-detail-card:nth-child(odd) {
-  border-right: 1px solid #514c47;
-}
-
-.resume-detail-card:nth-child(n + 3) {
-  border-bottom: 0;
-}
-
-.resume-detail-card>span {
-  font-family: "DM Mono", monospace;
-  font-size: 12px;
-  letter-spacing: 1px;
-}
-
-.resume-detail-card h2 {
-  margin: 50px 0 18px;
-  font-family: "DM Sans", sans-serif;
-  font-size: clamp(27px, 3vw, 42px);
-  font-weight: 800;
-  line-height: 1.2;
-}
-
-.resume-detail-card p {
-  font-family: "DM Serif Display", serif;
-  font-size: 19px;
-  line-height: 1.7;
-}
-
-.resume-detail-yellow {
-  background: #fff176;
-  color: #201c19;
-}
 
 @media (max-width: 768px) {
   .resume-hero {
@@ -2350,22 +2379,112 @@ a {
     padding: 50px 5%;
   }
 
+}
+
+@media print {
+  header,
+  footer,
+  .noise,
+  .resume-actions,
+  .resume-details-header,
+  .resume-look-button,
+  .resume-filter-btn {
+    display: none !important;
+  }
+
+  body,
+  .paper-grid,
+  .resume-container,
+  .resume-hero,
+  .resume-details {
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #111111 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
   .resume-details-grid {
-    grid-template-columns: 1fr;
+    display: block !important;
+    border: none !important;
   }
 
-  .resume-detail-card,
-  .resume-detail-card:nth-child(odd) {
-    border-right: 0;
-    border-bottom: 1px solid #514c47;
-    padding: 30px 24px;
+  .resume-detail-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border: 1px solid #e0e0e0 !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+    margin-bottom: 24px !important;
+    padding: 24px !important;
+    box-shadow: none !important;
   }
 
-  .resume-detail-card:last-child {
-    border-bottom: 0;
+  .resume-heading {
+    font-size: 36px !important;
+    margin-top: 16px !important;
+    color: #111111 !important;
   }
 
-  .resume-detail-card h2 {
-    margin-top: 35px;
+  .resume-detail-yellow {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+}
+
+/* ==========================================================================
+   SCROLL REVEAL ANIMATION SYSTEM
+   Provides smooth, hardware-accelerated scroll-triggered entrance animations.
+   Guarantees content is visible by default even if JS/observers fail.
+   ========================================================================== */
+
+.reveal-ready .reveal-on-scroll {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-ready .reveal-fade-up {
+  transform: translate3d(0, 32px, 0);
+}
+
+.reveal-ready .reveal-fade-left {
+  transform: translate3d(-36px, 0, 0);
+}
+
+.reveal-ready .reveal-fade-right {
+  transform: translate3d(36px, 0, 0);
+}
+
+.reveal-ready .reveal-scale {
+  transform: scale(0.94);
+}
+
+/* Stagger delays */
+.reveal-ready .delay-75 { transition-delay: 75ms; }
+.reveal-ready .delay-100 { transition-delay: 100ms; }
+.reveal-ready .delay-150 { transition-delay: 150ms; }
+.reveal-ready .delay-200 { transition-delay: 200ms; }
+.reveal-ready .delay-250 { transition-delay: 250ms; }
+.reveal-ready .delay-300 { transition-delay: 300ms; }
+.reveal-ready .delay-350 { transition-delay: 350ms; }
+.reveal-ready .delay-400 { transition-delay: 400ms; }
+.reveal-ready .delay-500 { transition-delay: 500ms; }
+.reveal-ready .delay-600 { transition-delay: 600ms; }
+
+/* When revealed into viewport */
+.reveal-ready .reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Accessibility: instant display for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
