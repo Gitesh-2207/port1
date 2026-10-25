@@ -12,18 +12,16 @@ export default function NextPhase() {
       />
 
       <div className="relative z-10 mx-auto max-w-[1260px] w-full">
-        {/* Eyebrow */}
-        <p className="reveal-on-scroll reveal-fade-up mb-6 sm:mb-8 font-mono text-xs font-bold tracking-[0.16em] uppercase text-[#211e1d]/80">
-          NEXT PHASE
-        </p>
+
+
 
         {/* Content row: headline on left, CTA button on right */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-8 lg:gap-14">
           {/* Main heading */}
-          <h2 className="reveal-on-scroll reveal-fade-right delay-100 max-w-[340px] sm:max-w-[560px] md:max-w-[460px] lg:max-w-[680px] xl:max-w-[820px] font-display text-[clamp(1.95rem,4.4vw,5.4rem)] font-black leading-[1.04] tracking-[-0.035em] text-[#211e1d]">
-            Great products begin <br />with understanding people — not pixels
+          <h2 className="reveal-on-scroll reveal-fade-right delay-100 max-w-[380px] sm:max-w-[620px] md:max-w-[600px] lg:max-w-[780px] xl:max-w-[920px] font-display text-[clamp(2.2rem,6vw,3.2rem)] sm:text-[clamp(2.8rem,5.5vw,4rem)] md:text-[clamp(3.5rem,5.2vw,4.8rem)] lg:text-[clamp(4rem,5.5vw,6rem)] xl:text-[clamp(4.5rem,5.5vw,7rem)] font-black leading-[1.04] tracking-[-0.035em] text-[#211e1d]">
+            Great products <br />begin <br />
+            with understanding people — not pixels
           </h2>
-
           {/* Circular CTA Button */}
           <div className="reveal-on-scroll reveal-scale delay-200 shrink-0 self-start md:self-center">
             <Link

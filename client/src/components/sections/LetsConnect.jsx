@@ -17,7 +17,7 @@ export default function LetsConnect({ className = "" }) {
 
           {/* User's statement matching the 'HAVE A GOOD PROJECT IDEA?' bold display typography */}
           <h2 className="mt-5 font-display text-3xl sm:text-5xl lg:text-6xl font-black uppercase leading-[1.02] tracking-tight text-white max-w-5xl">
-            I turn ideas into modern, user-friendly web experiences with clean code and reliable functionality.
+            I turn ideas into modern, user-friendly web experiences.
           </h2>
 
           {/* Minimalist Action Buttons & Social Icons */}

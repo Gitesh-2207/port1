@@ -18,13 +18,23 @@ export default function Footer({ theme = "dark" }) {
           BASED IN INDORE, INDIA
         </span>
 
-        <span
-          className={
-            isLight ? "text-ink/80 font-medium" : "text-white/80 font-medium"
-          }
-        >
-          © {new Date().getFullYear()} GITESH PATIDAR · FULL-STACK DEVELOPER
-        </span>
+        {/* Name and Professional Title */}
+        <div className="flex flex-col items-center text-center">
+          <span
+            className={
+              isLight ? "text-ink/80 font-medium" : "text-white/80 font-medium"
+            }
+          >
+            © {new Date().getFullYear()} GITESH PATIDAR
+          </span>
+          <span
+            className={`mt-1 text-[11px] uppercase tracking-wider ${
+              isLight ? "text-ink/60" : "text-white/60"
+            }`}
+          >
+            FULL STACK DEVELOPER
+          </span>
+        </div>
 
         <button
           type="button"

@@ -60,19 +60,11 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        {/* Mobile Actions */}
-        <div className="flex items-center gap-2 md:hidden">
-          <Link
-            to="/resume"
-            onClick={closeMenu}
-            className="flex items-center gap-1.5 rounded-full bg-lemon px-3.5 py-1.5 font-mono text-[10px] font-bold text-ink transition hover:bg-orange"
-          >
-            RESUME <ArrowUpRight size={11} />
-          </Link>
-
+        {/* Mobile Hamburger Button */}
+        <div className="flex items-center md:hidden">
           <button
             type="button"
-            className="p-1.5 text-white hover:text-lemon transition cursor-pointer"
+            className="flex items-center justify-center p-2 text-white hover:text-lemon transition cursor-pointer rounded-lg hover:bg-white/10"
             aria-label="Toggle navigation"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -106,11 +98,12 @@ export default function Navbar() {
           <Link
             to="/resume"
             onClick={closeMenu}
-            className={`rounded-xl px-4 py-3 font-mono text-xs uppercase tracking-wider font-bold text-ink transition ${
+            className={`flex items-center justify-between rounded-xl px-4 py-3 font-mono text-xs uppercase tracking-wider font-bold text-ink transition hover:bg-orange ${
               currentPage === "/resume" ? "bg-white" : "bg-lemon"
             }`}
           >
-            RESUME ↗
+            <span>RESUME</span>
+            <ArrowUpRight size={15} />
           </Link>
         </nav>
       )}

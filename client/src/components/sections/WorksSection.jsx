@@ -72,7 +72,22 @@ export default function WorksSection({ isPage = false }) {
                   {project.category} <span>·</span> {project.year}
                 </p>
 
-                <h2 className="font-display font-black tracking-tight text-ink">{project.title}</h2>
+                {project.url ? (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block group-hover:opacity-85 transition-opacity"
+                  >
+                    <h2 className="font-display font-black tracking-tight text-ink hover:underline">
+                      {project.title}
+                    </h2>
+                  </a>
+                ) : (
+                  <h2 className="font-display font-black tracking-tight text-ink">
+                    {project.title}
+                  </h2>
+                )}
 
                 <p className="work-description">{project.description}</p>
 
@@ -92,23 +107,6 @@ export default function WorksSection({ isPage = false }) {
                 <span className="appreciation-stamp">{project.stamp}</span>
 
                 <p className="text-xs font-mono text-ink/80">{project.tech}</p>
-
-                {project.url ? (
-                  <a
-                    className="work-arrow"
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`View ${project.title} on GitHub`}
-                    title={`View ${project.title} on GitHub`}
-                  >
-                    <ArrowRight size={24} />
-                  </a>
-                ) : (
-                  <span className="work-arrow opacity-50 cursor-not-allowed">
-                    <ArrowRight size={24} />
-                  </span>
-                )}
               </div>
 
               <div className={`work-sticky-note ${project.theme}`}>
