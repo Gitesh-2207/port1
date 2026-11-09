@@ -1,5 +1,6 @@
 import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
@@ -9,16 +10,19 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
   return (
-    <HashRouter>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/works" element={<WorksPage />} />
-          <Route path="/resume" element={<ResumePage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
-    </HashRouter>
+    <>
+      <HashRouter>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/works" element={<WorksPage />} />
+            <Route path="/resume" element={<ResumePage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
+      </HashRouter>
+      <Analytics />
+    </>
   );
 }
